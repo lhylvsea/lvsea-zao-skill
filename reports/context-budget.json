@@ -10,11 +10,11 @@
   },
   "resource_bytes": {
     "references": 9087,
-    "scripts": 76736,
+    "scripts": 77183,
     "evals": 3671,
     "reports": 38486
   },
-  "total_measured_bytes": 133239,
+  "total_measured_bytes": 133686,
   "files": [
     {
       "path": "references/creation-handoff.md",
@@ -58,7 +58,7 @@
     },
     {
       "path": "scripts/publish_skill.py",
-      "bytes": 16964,
+      "bytes": 17411,
       "on_demand": false
     },
     {

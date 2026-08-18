@@ -2,7 +2,7 @@
   "ok": true,
   "phase": "local",
   "root": "lvsea-zao-skill",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": null,
   "summary": {
     "pass": 8,
@@ -35,11 +35,11 @@
         },
         "resource_bytes": {
           "references": 9087,
-          "scripts": 76378,
+          "scripts": 77183,
           "evals": 3671,
-          "reports": 38485
+          "reports": 38486
         },
-        "total_measured_bytes": 132880,
+        "total_measured_bytes": 133686,
         "files": [
           {
             "path": "references/creation-handoff.md",
@@ -83,7 +83,7 @@
           },
           {
             "path": "scripts/publish_skill.py",
-            "bytes": 16606,
+            "bytes": 17411,
             "on_demand": false
           },
           {
@@ -153,7 +153,7 @@
           },
           {
             "path": "reports/release-check-local.json",
-            "bytes": 6300,
+            "bytes": 6301,
             "on_demand": true
           },
           {
@@ -177,7 +177,7 @@
         "ok": true,
         "failures": [],
         "manifest_name": "lvsea-zao-skill",
-        "manifest_version": "0.1.0"
+        "manifest_version": "0.1.1"
       }
     },
     {
@@ -218,7 +218,7 @@
         "ok": true,
         "returncode": 0,
         "stdout": "",
-        "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.056s\n\nOK"
+        "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.058s\n\nOK"
       }
     },
     {
