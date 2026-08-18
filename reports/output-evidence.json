@@ -1,0 +1,13 @@
+{
+  "evidence_kind": "static_fixture",
+  "ok": true,
+  "status": "informational",
+  "scope": "package structure, trigger fixtures, IR and release contract",
+  "missing_evidence": [
+    "provider_backed_output_run",
+    "human_blind_review",
+    "real_client_telemetry",
+    "user_satisfaction_or_business_outcome"
+  ],
+  "claim_boundary": "This file does not prove generated Skill output quality or superiority over either upstream project."
+}

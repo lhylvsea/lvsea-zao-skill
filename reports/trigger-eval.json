@@ -1,0 +1,254 @@
+{
+  "ok": true,
+  "threshold": 0.5,
+  "description_concepts": [
+    "authoring_action",
+    "quality_mechanism",
+    "release_intent",
+    "reusable_intent",
+    "skill",
+    "source_material"
+  ],
+  "missing_description_concepts": [],
+  "summary": {
+    "total": 15,
+    "passed": 15,
+    "false_positive": 0,
+    "false_negative": 0,
+    "pass_rate": 1.0
+  },
+  "bucket_summary": {
+    "should_trigger": {
+      "total": 5,
+      "passed": 5
+    },
+    "should_not_trigger": {
+      "total": 5,
+      "passed": 5
+    },
+    "near_neighbor": {
+      "total": 3,
+      "passed": 3
+    },
+    "adversarial": {
+      "total": 2,
+      "passed": 2
+    }
+  },
+  "failures": [],
+  "results": {
+    "should_trigger": [
+      {
+        "prompt": "把这套生产安全检查 SOP 做成一个团队可复用的 Skill。",
+        "family": "create-from-sop",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "authoring_action",
+          "reusable_intent",
+          "skill",
+          "source_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "优化这个已有 agent skill 的触发边界，补 should-trigger 和 should-not-trigger 评测。",
+        "family": "improve-trigger",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "authoring_action",
+          "quality_mechanism",
+          "skill"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "把这组 Prompt、脚本和聊天记录迁移成可安装的 Skill 包。",
+        "family": "migrate-package",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "authoring_action",
+          "skill",
+          "source_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "研究相关方案后，创建一个带 Skill IR、权限边界和发布门禁的可复用能力包。",
+        "family": "governed-create",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "authoring_action",
+          "quality_mechanism",
+          "reusable_intent",
+          "skill"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "发布这个 Skill 到 GitHub，创建 PR、Release 并验证干净安装。",
+        "family": "publish-verify",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "authoring_action",
+          "release_intent",
+          "skill"
+        ],
+        "negative_pattern": null
+      }
+    ],
+    "should_not_trigger": [
+      {
+        "prompt": "只解释一下什么是 Agent Skill，不要创建文件。",
+        "family": "explain-only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.667,
+        "matched_concepts": [
+          "authoring_action",
+          "skill"
+        ],
+        "negative_pattern": "只解释"
+      },
+      {
+        "prompt": "把这段文字翻译成中文，不需要 Skill。",
+        "family": "translation-only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.333,
+        "matched_concepts": [
+          "skill"
+        ],
+        "negative_pattern": "不需要 skill"
+      },
+      {
+        "prompt": "总结这份会议纪要，暂时不要封装成能力包。",
+        "family": "summary-only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.667,
+        "matched_concepts": [
+          "authoring_action",
+          "skill"
+        ],
+        "negative_pattern": "不要封装"
+      },
+      {
+        "prompt": "只做一份今天使用的 checklist，不要创建可复用 Skill。",
+        "family": "one-off-checklist",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "authoring_action",
+          "reusable_intent",
+          "skill"
+        ],
+        "negative_pattern": "不要创建"
+      },
+      {
+        "prompt": "帮我写一个产品标题，不涉及工作流和 Skill。",
+        "family": "ordinary-copy",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.667,
+        "matched_concepts": [
+          "skill",
+          "source_material"
+        ],
+        "negative_pattern": null
+      }
+    ],
+    "near_neighbor": [
+      {
+        "prompt": "给我一个一次性 Prompt，完成这次数据整理，不要封装 Skill。",
+        "family": "one-off-prompt",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "authoring_action",
+          "skill",
+          "source_material"
+        ],
+        "negative_pattern": "不要封装"
+      },
+      {
+        "prompt": "只改 README 的措辞，不要改 Skill 包或增加评测。",
+        "family": "readme-copy-edit",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.667,
+        "matched_concepts": [
+          "quality_mechanism",
+          "skill"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "解释 workflow 和 runbook 的区别，不需要创建能力包。",
+        "family": "concept-explanation",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "authoring_action",
+          "skill",
+          "source_material"
+        ],
+        "negative_pattern": "不需要创建"
+      }
+    ],
+    "adversarial": [
+      {
+        "prompt": "用自动化模板回答我这个一次性问题，不要创建 Skill。",
+        "family": "automation-keyword-trap",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.667,
+        "matched_concepts": [
+          "authoring_action",
+          "skill"
+        ],
+        "negative_pattern": "不要创建"
+      },
+      {
+        "prompt": "给我一个能力清单即可，不要封装成可复用能力包。",
+        "family": "capability-keyword-trap",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "authoring_action",
+          "reusable_intent",
+          "skill"
+        ],
+        "negative_pattern": "不要封装"
+      }
+    ]
+  }
+}

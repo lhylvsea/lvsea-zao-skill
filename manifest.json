@@ -1,0 +1,71 @@
+{
+  "name": "lvsea-zao-skill",
+  "version": "0.1.0",
+  "owner": "海洋哥 / lhylvsea",
+  "updated_at": "2026-08-18",
+  "review_due": "2026-11-18",
+  "status": "active",
+  "maturity_tier": "governed",
+  "lifecycle_stage": "library",
+  "context_budget_tier": "production",
+  "review_cadence": "quarterly",
+  "upstream_inspiration": "https://github.com/joeseesun/qiaomu-meta-skill; https://github.com/yaojingang/yao-meta-skill",
+  "upstream_sync": {
+    "qiaomu_reviewed_commit": "9d9eafe",
+    "qiaomu_reviewed_at": "2026-08-18",
+    "yao_reviewed_commit": "f5d8f68",
+    "yao_reviewed_at": "2026-08-18",
+    "policy": "semantic adoption; do not mirror upstream wholesale"
+  },
+  "intent": {
+    "job_to_be_done": "将重复工作流、Prompt、SOP、脚本、笔记或旧 Skill 变成可发现、可评测、可移植、可治理、可发布的 Agent Skill 包。",
+    "target_users": ["个人自动化使用者", "Agent/Skill 构建者", "制造企业数字化与工具团队"],
+    "inputs": ["workflow", "prompt", "transcript", "SOP", "script", "notes", "existing skill package"],
+    "outputs": ["SKILL.md", "README.md", "interface", "manifest", "trigger eval", "Skill IR", "release evidence"],
+    "exclusions": ["one-off answer", "summary", "translation", "ordinary documentation", "brainstorming", "copy-only README edit"]
+  },
+  "risk": {
+    "output_risk": "medium",
+    "execution_risk": "medium",
+    "trust_boundary": "external"
+  },
+  "permissions": {
+    "network": "read-only prior-art discovery by default; GitHub write operations only after explicit publication request",
+    "file_write": "target skill package only; local install sync is opt-in",
+    "subprocess": "Python validation, npx skills discovery/install, git and gh release flow",
+    "secrets": "never read into public artifacts; scan before commit"
+  },
+  "target_platforms": [
+    "openai",
+    "claude",
+    "generic",
+    "agent-skills-compatible",
+    "vscode"
+  ],
+  "factory_components": [
+    "references",
+    "scripts",
+    "evals",
+    "reports",
+    "schemas"
+  ],
+  "release_gates": [
+    "intent_capture",
+    "prior_art_research",
+    "keep_adapt_reject_invent_ledger",
+    "generalization_gate",
+    "root_entrypoint_isolation",
+    "trigger_regression",
+    "context_budget",
+    "skill_ir",
+    "portability_and_trust",
+    "secret_scan",
+    "rollback_boundary",
+    "evidence_bound_public_claims",
+    "feature_branch_only_publication",
+    "pull_request_review_and_check_gate",
+    "released_version_immutability",
+    "github_release_creation",
+    "npx_discovery_and_clean_install"
+  ]
+}
