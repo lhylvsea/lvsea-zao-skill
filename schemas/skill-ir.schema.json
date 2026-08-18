@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/lhylvsea/lvsea-zao-skill/schema/skill-ir.schema.json",
+  "title": "Lvsea Skill IR",
+  "type": "object",
+  "required": ["schema_version", "package", "intent", "triggers", "workflow", "resources", "risk", "governance", "portability", "evidence_boundary"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "package": {"type": "object"},
+    "intent": {"type": "object"},
+    "triggers": {"type": "object"},
+    "workflow": {"type": "object"},
+    "resources": {"type": "object"},
+    "risk": {"type": "object"},
+    "governance": {"type": "object"},
+    "portability": {"type": "object"},
+    "evidence_boundary": {"type": "object"}
+  },
+  "additionalProperties": true
+}

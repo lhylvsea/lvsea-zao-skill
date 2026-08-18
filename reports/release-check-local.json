@@ -1,0 +1,242 @@
+{
+  "ok": true,
+  "phase": "local",
+  "root": "lvsea-zao-skill",
+  "version": "0.1.0",
+  "repository": null,
+  "summary": {
+    "pass": 8,
+    "warn": 2,
+    "block": 0
+  },
+  "gates": [
+    {
+      "gate": "package_validation",
+      "status": "pass",
+      "evidence": {
+        "ok": true,
+        "root": "lvsea-zao-skill",
+        "failures": [],
+        "warnings": []
+      }
+    },
+    {
+      "gate": "context_budget",
+      "status": "pass",
+      "evidence": {
+        "ok": true,
+        "status": "pass",
+        "reason": "root SKILL.md is 5259 bytes within production budget",
+        "tier": "production",
+        "root_skill_bytes": 5259,
+        "root_budget_bytes": {
+          "root_warn": 14000,
+          "root_block": 20000
+        },
+        "resource_bytes": {
+          "references": 9087,
+          "scripts": 76378,
+          "evals": 3671,
+          "reports": 38485
+        },
+        "total_measured_bytes": 132880,
+        "files": [
+          {
+            "path": "references/creation-handoff.md",
+            "bytes": 827,
+            "on_demand": true
+          },
+          {
+            "path": "references/evaluation-and-governance.md",
+            "bytes": 1955,
+            "on_demand": true
+          },
+          {
+            "path": "references/intent-dialogue.md",
+            "bytes": 1264,
+            "on_demand": true
+          },
+          {
+            "path": "references/operating-modes.md",
+            "bytes": 1221,
+            "on_demand": true
+          },
+          {
+            "path": "references/portability-and-trust.md",
+            "bytes": 1737,
+            "on_demand": true
+          },
+          {
+            "path": "references/skill-engineering-method.md",
+            "bytes": 2083,
+            "on_demand": true
+          },
+          {
+            "path": "scripts/context_sizer.py",
+            "bytes": 3391,
+            "on_demand": false
+          },
+          {
+            "path": "scripts/export_skill_ir.py",
+            "bytes": 7789,
+            "on_demand": false
+          },
+          {
+            "path": "scripts/publish_skill.py",
+            "bytes": 16606,
+            "on_demand": false
+          },
+          {
+            "path": "scripts/release_check.py",
+            "bytes": 10402,
+            "on_demand": false
+          },
+          {
+            "path": "scripts/research_prior_art.py",
+            "bytes": 10909,
+            "on_demand": false
+          },
+          {
+            "path": "scripts/runtime.py",
+            "bytes": 1854,
+            "on_demand": false
+          },
+          {
+            "path": "scripts/search_skillsmp.py",
+            "bytes": 9003,
+            "on_demand": false
+          },
+          {
+            "path": "scripts/trigger_eval.py",
+            "bytes": 6139,
+            "on_demand": false
+          },
+          {
+            "path": "scripts/validate_skill.py",
+            "bytes": 10285,
+            "on_demand": false
+          },
+          {
+            "path": "evals/trigger_cases.json",
+            "bytes": 3671,
+            "on_demand": false
+          },
+          {
+            "path": "reports/context-budget.json",
+            "bytes": 3237,
+            "on_demand": true
+          },
+          {
+            "path": "reports/creation-handoff.md",
+            "bytes": 3242,
+            "on_demand": true
+          },
+          {
+            "path": "reports/output-evidence.json",
+            "bytes": 444,
+            "on_demand": true
+          },
+          {
+            "path": "reports/output_quality_scorecard.md",
+            "bytes": 1175,
+            "on_demand": true
+          },
+          {
+            "path": "reports/portability.md",
+            "bytes": 855,
+            "on_demand": true
+          },
+          {
+            "path": "reports/prior-art-research.md",
+            "bytes": 5903,
+            "on_demand": true
+          },
+          {
+            "path": "reports/release-check-local.json",
+            "bytes": 6300,
+            "on_demand": true
+          },
+          {
+            "path": "reports/skill-ir.json",
+            "bytes": 10071,
+            "on_demand": true
+          },
+          {
+            "path": "reports/trigger-eval.json",
+            "bytes": 7258,
+            "on_demand": true
+          }
+        ],
+        "missing_evidence": "context size does not prove output quality or runtime performance"
+      }
+    },
+    {
+      "gate": "version_and_report_consistency",
+      "status": "pass",
+      "evidence": {
+        "ok": true,
+        "failures": [],
+        "manifest_name": "lvsea-zao-skill",
+        "manifest_version": "0.1.0"
+      }
+    },
+    {
+      "gate": "secret_scan",
+      "status": "pass",
+      "evidence": {
+        "findings": []
+      }
+    },
+    {
+      "gate": "git_diff_check",
+      "status": "pass",
+      "evidence": {
+        "ok": true,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    {
+      "gate": "feature_branch",
+      "status": "pass",
+      "evidence": {
+        "branch": "codex/prepare-lvsea-zao-v0-1-0"
+      }
+    },
+    {
+      "gate": "clean_worktree",
+      "status": "pass",
+      "evidence": {
+        "dirty": false
+      }
+    },
+    {
+      "gate": "unit_tests",
+      "status": "pass",
+      "evidence": {
+        "ok": true,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.056s\n\nOK"
+      }
+    },
+    {
+      "gate": "clean_install",
+      "status": "warn",
+      "evidence": {
+        "missing_evidence": "rerun with --install-check after the target revision is remote"
+      }
+    },
+    {
+      "gate": "provider_or_human_output_evidence",
+      "status": "warn",
+      "evidence": {
+        "path": "reports/output-evidence.json",
+        "evidence_kind": "static_fixture",
+        "ok": true,
+        "missing_evidence": "static fixtures/specifications do not prove provider or human output quality"
+      }
+    }
+  ]
+}

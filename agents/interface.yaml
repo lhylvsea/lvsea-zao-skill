@@ -1,0 +1,65 @@
+interface:
+  display_name: "Lvsea 造 Skill"
+  short_description: "Create, evaluate, govern, and publish reusable agent skills"
+  default_prompt: "Use $lvsea-zao-skill as the single authoring authority. Capture intent and output contract, research relevant prior art, synthesize keep/adapt/reject/invent decisions, create a lean skill package, run trigger/context/trust/release gates, and publish only through a feature branch, PR, Release, discovery, and clean install when explicitly requested."
+  examples:
+    - "把这套重复工作流封装成一个可复用 Skill"
+    - "优化已有 Skill 的触发边界并补回归评测"
+    - "把 Prompt、SOP 和脚本迁移成团队可用的 Skill 包"
+    - "补 Skill IR、上下文预算、权限和回滚边界"
+    - "发布这个 Skill 到 GitHub 并验证干净安装"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "openai"
+    - "claude"
+    - "generic"
+    - "agent-skills-compatible"
+    - "vscode"
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash-or-powershell"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow metadata and read-only source review; forbid unreviewed execution"
+    generated_public_claims: "evidence-bound"
+  permissions:
+    network: "prior-art catalogs and GitHub source review; publishing only when explicitly requested"
+    file_write: "skill package files only unless the user requests publish or install sync"
+    subprocess: "Python gates, npx skills discovery/install, git and gh publication; no hidden third-party execution"
+    interactive: "avoid unless authentication, PR review, or installer confirmation requires it"
+  degradation:
+    openai: "metadata-adapter"
+    claude: "neutral-source-plus-adapter"
+    generic: "neutral-source"
+    agent-skills-compatible: "canonical-source"
+    vscode: "neutral-source-plus-review-notes"
+gates:
+  scaffold:
+    - "SKILL.md frontmatter"
+    - "README hook and natural trigger examples"
+    - "clear exclusions"
+  production:
+    - "intent and reusable output contract"
+    - "prior-art report or explicit missing evidence"
+    - "agents/interface.yaml"
+    - "evals/trigger_cases.json"
+    - "trigger regression report"
+    - "root-only discoverable SKILL.md entrypoint"
+    - "install and README verification"
+  library:
+    - "reports/skill-ir.json"
+    - "context budget report"
+    - "portability and degradation notes"
+    - "trust boundary and permissions"
+    - "owner and review cadence"
+  governed:
+    - "manifest and version consistency"
+    - "secret scan"
+    - "rollback boundary"
+    - "evidence-bound public claims"
+    - "feature branch, PR, Release, discovery and clean install"

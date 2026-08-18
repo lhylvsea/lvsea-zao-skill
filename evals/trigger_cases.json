@@ -1,0 +1,53 @@
+{
+  "recommended_threshold": 0.5,
+  "description_required_concepts": ["skill", "source_material", "authoring_action"],
+  "positive_concepts": {
+    "skill": ["skill", "agent skill", "技能", "能力包"],
+    "source_material": ["workflow", "prompt", "transcript", "runbook", "sop", "流程", "工作流", "提示词", "对话记录", "脚本", "旧 skill"],
+    "authoring_action": ["create", "turn", "convert", "refactor", "evaluate", "package", "govern", "publish", "upgrade", "improve", "migrate", "install", "创建", "做成", "整理", "封装", "沉淀", "优化", "评估", "迁移", "安装", "补", "发布", "打包"],
+    "quality_mechanism": ["eval", "trigger", "output", "skill ir", "release gate", "评测", "触发", "边界", "门禁", "治理", "可移植", "权限", "信任", "回滚", "安装验证"],
+    "reusable_intent": ["reusable", "team", "shareable", "可复用", "团队", "长期维护", "正式资产"],
+    "release_intent": ["github", "release", "pr", "github", "发布到", "仓库", "版本化"]
+  },
+  "negative_patterns": [
+    "只解释",
+    "仅解释",
+    "只总结",
+    "仅总结",
+    "只翻译",
+    "仅翻译",
+    "不要创建",
+    "不创建",
+    "不需要创建",
+    "无需创建",
+    "不要封装",
+    "不封装",
+    "只要一份 checklist",
+    "只做一份清单",
+    "一次性",
+    "不需要 skill"
+  ],
+  "should_trigger": [
+    {"text": "把这套生产安全检查 SOP 做成一个团队可复用的 Skill。", "family": "create-from-sop", "min_concept_matches": 3},
+    {"text": "优化这个已有 agent skill 的触发边界，补 should-trigger 和 should-not-trigger 评测。", "family": "improve-trigger", "min_concept_matches": 3},
+    {"text": "把这组 Prompt、脚本和聊天记录迁移成可安装的 Skill 包。", "family": "migrate-package", "min_concept_matches": 3},
+    {"text": "研究相关方案后，创建一个带 Skill IR、权限边界和发布门禁的可复用能力包。", "family": "governed-create", "min_concept_matches": 4},
+    {"text": "发布这个 Skill 到 GitHub，创建 PR、Release 并验证干净安装。", "family": "publish-verify", "min_concept_matches": 3}
+  ],
+  "should_not_trigger": [
+    {"text": "只解释一下什么是 Agent Skill，不要创建文件。", "family": "explain-only", "min_concept_matches": 3},
+    {"text": "把这段文字翻译成中文，不需要 Skill。", "family": "translation-only", "min_concept_matches": 3},
+    {"text": "总结这份会议纪要，暂时不要封装成能力包。", "family": "summary-only", "min_concept_matches": 3},
+    {"text": "只做一份今天使用的 checklist，不要创建可复用 Skill。", "family": "one-off-checklist", "min_concept_matches": 3},
+    {"text": "帮我写一个产品标题，不涉及工作流和 Skill。", "family": "ordinary-copy", "min_concept_matches": 3}
+  ],
+  "near_neighbor": [
+    {"text": "给我一个一次性 Prompt，完成这次数据整理，不要封装 Skill。", "family": "one-off-prompt", "min_concept_matches": 3},
+    {"text": "只改 README 的措辞，不要改 Skill 包或增加评测。", "family": "readme-copy-edit", "min_concept_matches": 3},
+    {"text": "解释 workflow 和 runbook 的区别，不需要创建能力包。", "family": "concept-explanation", "min_concept_matches": 3}
+  ],
+  "adversarial": [
+    {"text": "用自动化模板回答我这个一次性问题，不要创建 Skill。", "family": "automation-keyword-trap", "min_concept_matches": 3},
+    {"text": "给我一个能力清单即可，不要封装成可复用能力包。", "family": "capability-keyword-trap", "min_concept_matches": 3}
+  ]
+}
