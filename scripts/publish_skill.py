@@ -9,6 +9,7 @@ import json
 import os
 import re
 import shutil
+import sys
 import tempfile
 import time
 from pathlib import Path
@@ -21,6 +22,18 @@ from validate_skill import load_json, parse_frontmatter, validate
 
 class PublishError(RuntimeError):
     pass
+
+
+def configure_console() -> None:
+    """Keep structured results printable on Windows consoles using legacy code pages."""
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is None:
+            continue
+        try:
+            reconfigure(encoding="utf-8", errors="replace")
+        except (OSError, ValueError):
+            continue
 
 
 def checked(args: list[str], cwd: Path, *, timeout: float = 300.0) -> dict[str, Any]:
@@ -325,6 +338,7 @@ def publish(args: argparse.Namespace) -> dict[str, Any]:
 
 
 def main() -> None:
+    configure_console()
     parser = argparse.ArgumentParser(description="Publish a Lvsea Skill through branch, PR, Release, and install gates.")
     parser.add_argument("skill_dir")
     parser.add_argument("--github-user")

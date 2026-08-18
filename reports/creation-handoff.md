@@ -2,7 +2,7 @@
 
 ## Result
 
-- Skill: `lvsea-zao-skill` `0.1.0`
+- Skill: `lvsea-zao-skill` `0.1.1`
 - Owner: `海洋哥 / lhylvsea`
 - Job: 将重复工作流、Prompt、SOP、脚本、笔记或旧 Skill 变成可发现、可评测、可移植、可治理、可发布的 Agent Skill 包。
 - Local path: the package root containing this report
