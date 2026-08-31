@@ -1,11 +1,13 @@
 {
   "recommended_threshold": 0.5,
-  "description_required_concepts": ["skill", "source_material", "authoring_action"],
+  "description_required_concepts": ["skill", "source_material", "authoring_action", "source_boundary", "mechanism_card"],
   "positive_concepts": {
     "skill": ["skill", "agent skill", "技能", "能力包"],
-    "source_material": ["workflow", "prompt", "transcript", "runbook", "sop", "流程", "工作流", "提示词", "对话记录", "脚本", "旧 skill"],
-    "authoring_action": ["create", "turn", "convert", "refactor", "evaluate", "package", "govern", "publish", "upgrade", "improve", "migrate", "install", "创建", "做成", "整理", "封装", "沉淀", "优化", "评估", "迁移", "安装", "补", "发布", "打包"],
-    "quality_mechanism": ["eval", "trigger", "output", "skill ir", "release gate", "评测", "触发", "边界", "门禁", "治理", "可移植", "权限", "信任", "回滚", "安装验证"],
+    "source_material": ["workflow", "prompt", "transcript", "runbook", "sop", "document", "pdf", "video", "course", "article", "repository", "source", "流程", "工作流", "提示词", "对话记录", "脚本", "旧 skill", "文档", "资料", "视频", "课程", "文章", "仓库", "字幕", "转写稿", "原文", "来源"],
+    "authoring_action": ["create", "turn", "convert", "refactor", "evaluate", "package", "govern", "publish", "upgrade", "improve", "migrate", "install", "创建", "做成", "整理", "封装", "沉淀", "优化", "评估", "审查", "修复", "迁移", "安装", "补", "发布", "打包", "转换", "拆成"],
+    "quality_mechanism": ["eval", "trigger", "output", "skill ir", "release gate", "retest", "评测", "触发", "边界", "门禁", "治理", "可移植", "权限", "信任", "回滚", "安装验证", "证据边界", "机制卡", "重测", "缺失证据", "来源驱动"],
+    "source_boundary": ["source boundary", "evidence boundary", "来源边界", "证据边界", "不可访问", "缺失证据"],
+    "mechanism_card": ["mechanism card", "mechanism cards", "机制卡"],
     "reusable_intent": ["reusable", "team", "shareable", "可复用", "团队", "长期维护", "正式资产"],
     "release_intent": ["github", "release", "pr", "github", "发布到", "仓库", "版本化"]
   },
@@ -32,13 +34,18 @@
     {"text": "优化这个已有 agent skill 的触发边界，补 should-trigger 和 should-not-trigger 评测。", "family": "improve-trigger", "min_concept_matches": 3},
     {"text": "把这组 Prompt、脚本和聊天记录迁移成可安装的 Skill 包。", "family": "migrate-package", "min_concept_matches": 3},
     {"text": "研究相关方案后，创建一个带 Skill IR、权限边界和发布门禁的可复用能力包。", "family": "governed-create", "min_concept_matches": 4},
-    {"text": "发布这个 Skill 到 GitHub，创建 PR、Release 并验证干净安装。", "family": "publish-verify", "min_concept_matches": 3}
+    {"text": "发布这个 Skill 到 GitHub，创建 PR、Release 并验证干净安装。", "family": "publish-verify", "min_concept_matches": 3},
+    {"text": "把这份设备点检 SOP 按证据边界和机制卡转成可执行 Skill。", "family": "source-boundary-convert", "min_concept_matches": 4},
+    {"text": "只有课程视频链接，没有转写稿，先判断来源是否可访问，再决定能否做成 Skill。", "family": "blocked-source", "min_concept_matches": 3},
+    {"text": "审查这个生成的 Skill 是否把原文总结当成流程，补充重测提示。", "family": "repair-summary-as-skill", "min_concept_matches": 3},
+    {"text": "把多个来源拆成一套机制卡和一个可复用 Skill 包，记录合并或舍弃决策。", "family": "multi-source-mechanism", "min_concept_matches": 4}
   ],
   "should_not_trigger": [
     {"text": "只解释一下什么是 Agent Skill，不要创建文件。", "family": "explain-only", "min_concept_matches": 3},
     {"text": "把这段文字翻译成中文，不需要 Skill。", "family": "translation-only", "min_concept_matches": 3},
     {"text": "总结这份会议纪要，暂时不要封装成能力包。", "family": "summary-only", "min_concept_matches": 3},
     {"text": "只做一份今天使用的 checklist，不要创建可复用 Skill。", "family": "one-off-checklist", "min_concept_matches": 3},
+    {"text": "只总结这段视频，不要提取机制卡或创建 Skill。", "family": "summary-with-mechanism-keyword", "min_concept_matches": 3},
     {"text": "帮我写一个产品标题，不涉及工作流和 Skill。", "family": "ordinary-copy", "min_concept_matches": 3}
   ],
   "near_neighbor": [

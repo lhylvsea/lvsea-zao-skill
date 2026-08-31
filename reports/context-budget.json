@@ -1,79 +1,84 @@
 {
   "ok": true,
   "status": "pass",
-  "reason": "root SKILL.md is 5259 bytes within production budget",
+  "reason": "root SKILL.md is 7447 bytes within production budget",
   "tier": "production",
-  "root_skill_bytes": 5259,
+  "root_skill_bytes": 7447,
   "root_budget_bytes": {
     "root_warn": 14000,
     "root_block": 20000
   },
   "resource_bytes": {
-    "references": 9087,
-    "scripts": 77183,
-    "evals": 3671,
-    "reports": 38486
+    "references": 12605,
+    "scripts": 78539,
+    "evals": 5087,
+    "reports": 44838
   },
-  "total_measured_bytes": 133686,
+  "total_measured_bytes": 148516,
   "files": [
     {
+      "path": "references/content-to-skill-adoption.md",
+      "bytes": 3329,
+      "on_demand": true
+    },
+    {
       "path": "references/creation-handoff.md",
-      "bytes": 827,
+      "bytes": 858,
       "on_demand": true
     },
     {
       "path": "references/evaluation-and-governance.md",
-      "bytes": 1955,
+      "bytes": 1989,
       "on_demand": true
     },
     {
       "path": "references/intent-dialogue.md",
-      "bytes": 1264,
+      "bytes": 1291,
       "on_demand": true
     },
     {
       "path": "references/operating-modes.md",
-      "bytes": 1221,
+      "bytes": 1248,
       "on_demand": true
     },
     {
       "path": "references/portability-and-trust.md",
-      "bytes": 1737,
+      "bytes": 1769,
       "on_demand": true
     },
     {
       "path": "references/skill-engineering-method.md",
-      "bytes": 2083,
+      "bytes": 2121,
       "on_demand": true
     },
     {
       "path": "scripts/context_sizer.py",
-      "bytes": 3391,
+      "bytes": 3484,
       "on_demand": false
     },
     {
       "path": "scripts/export_skill_ir.py",
-      "bytes": 7789,
+      "bytes": 7985,
       "on_demand": false
     },
     {
       "path": "scripts/publish_skill.py",
-      "bytes": 17411,
+      "bytes": 17776,
       "on_demand": false
     },
     {
       "path": "scripts/release_check.py",
-      "bytes": 10402,
+      "bytes": 10615,
       "on_demand": false
     },
     {
       "path": "scripts/research_prior_art.py",
-      "bytes": 10909,
+      "bytes": 10928,
       "on_demand": false
     },
     {
       "path": "scripts/runtime.py",
-      "bytes": 1854,
+      "bytes": 1917,
       "on_demand": false
     },
     {
@@ -83,47 +88,47 @@
     },
     {
       "path": "scripts/trigger_eval.py",
-      "bytes": 6139,
+      "bytes": 6301,
       "on_demand": false
     },
     {
       "path": "scripts/validate_skill.py",
-      "bytes": 10285,
+      "bytes": 10530,
       "on_demand": false
     },
     {
       "path": "evals/trigger_cases.json",
-      "bytes": 3671,
+      "bytes": 5087,
       "on_demand": false
     },
     {
       "path": "reports/context-budget.json",
-      "bytes": 3237,
+      "bytes": 3358,
       "on_demand": true
     },
     {
       "path": "reports/creation-handoff.md",
-      "bytes": 3242,
+      "bytes": 3856,
       "on_demand": true
     },
     {
       "path": "reports/output-evidence.json",
-      "bytes": 444,
+      "bytes": 457,
       "on_demand": true
     },
     {
       "path": "reports/output_quality_scorecard.md",
-      "bytes": 1175,
+      "bytes": 1191,
       "on_demand": true
     },
     {
       "path": "reports/portability.md",
-      "bytes": 855,
+      "bytes": 865,
       "on_demand": true
     },
     {
       "path": "reports/prior-art-research.md",
-      "bytes": 5903,
+      "bytes": 7239,
       "on_demand": true
     },
     {
@@ -133,12 +138,12 @@
     },
     {
       "path": "reports/skill-ir.json",
-      "bytes": 10071,
+      "bytes": 11778,
       "on_demand": true
     },
     {
       "path": "reports/trigger-eval.json",
-      "bytes": 7258,
+      "bytes": 9793,
       "on_demand": true
     }
   ],
