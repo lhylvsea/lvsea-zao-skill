@@ -11,6 +11,12 @@
 
 它把两类优势接到一条链上：一方面先研究同类方案、测试触发边界并安全走 GitHub 发布；另一方面把 Skill IR、上下文预算、可移植性、信任边界和生命周期治理显式化。目标是少写无效说明，多交付能安装、能验证、能继续维护的包。
 
+## 来源转 Skill 的融合层
+
+本版本吸收了 [gnipbao/content-to-skill](https://github.com/gnipbao/content-to-skill) 的证据优先方法，但不复制其独立入口。来源型请求现在先建立来源边界，再提取机制卡，默认生成一个边界清楚的 Skill；来源不可访问时停机或做 `dry-run`，并用前向重测检查输出是否仍依赖原文。
+
+具体的中文触发词、四个应用场景、调用示例和能力边界见 [中文使用说明](USAGE.zh-CN.md)。上游审阅提交和 `keep / adapt / reject` 取舍见 [融合说明](references/content-to-skill-adoption.md)。
+
 ## 安装
 
 ```bash
@@ -35,10 +41,10 @@ npx skills add lhylvsea/lvsea-zao-skill --skill lvsea-zao-skill
 
 ## 它会做什么
 
-1. 从 workflow、Prompt、转录、SOP、脚本或旧 Skill 中提炼可重复任务。
+1. 从 workflow、Prompt、转录、SOP、文档、脚本或旧 Skill 中提炼可重复任务，并先记录来源边界。
 2. 记录目标用户、输入、输出契约、排除项、质量标准和权限边界。
-3. 检索并核对同类方案，区分 `keep / adapt / reject / invent`，避免拼贴上游文字。
-4. 创建精简的 `SKILL.md`，把长方法、确定性检查、评测和证据分层保存。
+3. 将来源整理为机制卡，检索并核对同类方案，区分 `keep / adapt / reject / invent`，避免拼贴上游文字。
+4. 创建精简的 `SKILL.md`，把长方法、确定性检查、评测、重测和证据分层保存。
 5. 运行触发回归、包结构检查、上下文预算、秘密扫描、信任和发布门禁。
 6. 在用户明确授权后，通过功能分支、PR、版本化 Release、公开发现和隔离安装完成发布。
 
@@ -48,6 +54,7 @@ npx skills add lhylvsea/lvsea-zao-skill --skill lvsea-zao-skill
 lvsea-zao-skill/
 ├── SKILL.md                         # Agent 运行入口
 ├── README.md                        # 面向安装者的中文产品页
+├── USAGE.zh-CN.md                   # 中文触发、场景、调用和边界
 ├── manifest.json                    # 版本、owner、成熟度与发布门禁
 ├── agents/interface.yaml            # 平台中立接口与权限声明
 ├── references/                      # 方法、治理、信任与可移植说明
@@ -148,6 +155,7 @@ python scripts/publish_skill.py . --github-user lhylvsea --repo-name lvsea-zao-s
 
 - [joeseesun/qiaomu-meta-skill](https://github.com/joeseesun/qiaomu-meta-skill)：先例研究、`keep/adapt/reject/invent`、触发评测、证据边界和分支/PR/Release/安装发布链。
 - [yaojingang/yao-meta-skill](https://github.com/yaojingang/yao-meta-skill)：意图建模、Skill IR、分层回归、上下文纪律、可移植性、信任边界和生命周期治理。
+- [gnipbao/content-to-skill](https://github.com/gnipbao/content-to-skill)：来源边界、机制卡、单 Skill 默认、不可访问来源停机和前向重测；审阅提交 `ce5776a5161065836ed4647f9b96629d062ffdee`，许可证 MIT。
 - [skills.sh](https://skills.sh/) 与 [SkillsMP](https://skillsmp.com/)：先例检索目录；其安装量和 stars 仅按原始语义记录。
 
 ## License

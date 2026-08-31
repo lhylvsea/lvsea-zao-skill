@@ -1,13 +1,15 @@
 interface:
   display_name: "Lvsea 造 Skill"
-  short_description: "Create, evaluate, govern, and publish reusable agent skills"
-  default_prompt: "Use $lvsea-zao-skill as the single authoring authority. Capture intent and output contract, research relevant prior art, synthesize keep/adapt/reject/invent decisions, create a lean skill package, run trigger/context/trust/release gates, and publish only through a feature branch, PR, Release, discovery, and clean install when explicitly requested."
+  short_description: "证据优先创建、评测、治理和发布可复用 Agent Skill"
+  default_prompt: "Use $lvsea-zao-skill as the single authoring authority. Capture intent and source evidence boundary, extract mechanism cards, research relevant prior art, synthesize keep/adapt/reject/invent decisions, default to one bounded skill, create a lean package with retest prompts, run trigger/context/trust/release gates, and publish only through a feature branch, PR, Release, discovery, and clean install when explicitly requested."
   examples:
     - "把这套重复工作流封装成一个可复用 Skill"
     - "优化已有 Skill 的触发边界并补回归评测"
     - "把 Prompt、SOP 和脚本迁移成团队可用的 Skill 包"
     - "补 Skill IR、上下文预算、权限和回滚边界"
     - "发布这个 Skill 到 GitHub 并验证干净安装"
+    - "按证据边界和机制卡把资料转成一个可复用 Skill"
+    - "这个视频只有链接没有转写稿，先判断是否能处理"
 compatibility:
   canonical_format: "agent-skills"
   adapter_targets:

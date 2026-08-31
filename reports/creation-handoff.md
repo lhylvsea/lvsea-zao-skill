@@ -2,7 +2,7 @@
 
 ## Result
 
-- Skill: `lvsea-zao-skill` `0.1.1`
+- Skill: `lvsea-zao-skill` `0.1.2`
 - Owner: `海洋哥 / lhylvsea`
 - Job: 将重复工作流、Prompt、SOP、脚本、笔记或旧 Skill 变成可发现、可评测、可移植、可治理、可发布的 Agent Skill 包。
 - Local path: the package root containing this report
@@ -12,12 +12,13 @@
 
 - [qiaomu-meta-skill](https://github.com/joeseesun/qiaomu-meta-skill)：学习先例检索、取舍台账、触发评测、证据边界和功能分支/PR/Release/安装发布链；落到 `references/skill-engineering-method.md`、`scripts/trigger_eval.py`、`scripts/release_check.py` 和 `scripts/publish_skill.py`。
 - [yao-meta-skill](https://github.com/yaojingang/yao-meta-skill)：学习 Intent/Skill IR/治理/可移植/上下文纪律/`missing evidence`；落到 `manifest.json`、`agents/interface.yaml`、`scripts/export_skill_ir.py`、`scripts/context_sizer.py` 和 `references/`。
+- [gnipbao/content-to-skill](https://github.com/gnipbao/content-to-skill)：学习来源边界、机制卡、单 Skill 默认、不可访问来源停机和前向重测；按 commit `ce5776a5161065836ed4647f9b96629d062ffdee` 审阅，落到 `SKILL.md`、`USAGE.zh-CN.md`、`references/content-to-skill-adoption.md`、`manifest.json` 和 `evals/trigger_cases.json`。
 
 ## Absorbed and rejected
 
-- `keep`：先研究后创建；保留上游机制而非复制长文；触发、结构、秘密、信任、发布和安装分层验证；公开声明服从证据边界。
-- `adapt`：将 Qiaomu 发布器改为 `lhylvsea` owner；将 Yao 大型 Skill OS 压缩为首版实际需要的 IR、预算、治理、回归和发布契约；修复 Windows `.cmd` 工具解析。
-- `reject`：Qiaomu 个人 Profile/二维码；Yao 的 telemetry、Review Studio、world-class evidence 和庞大报告资产；所有未经审查的远程脚本执行；直接推送默认分支。
+- `keep`：先研究后创建；保留上游机制而非复制长文；加入来源边界、机制卡、单 Skill 默认、不可访问来源停机和前向重测；触发、结构、秘密、信任、发布和安装分层验证；公开声明服从证据边界。
+- `adapt`：将 Qiaomu 发布器改为 `lhylvsea` owner；将 Yao 大型 Skill OS 压缩为首版实际需要的 IR、预算、治理、回归和发布契约；把 Content To Skill 的来源模式映射到现有治理级别；修复 Windows `.cmd` 工具解析。
+- `reject`：Qiaomu 个人 Profile/二维码；Yao 的 telemetry、Review Studio、world-class evidence 和庞大报告资产；Content To Skill 的独立重复入口和整库镜像；所有未经审查的远程脚本执行；直接推送默认分支。
 - `invent`：轻量四类触发回归、跨平台命令解析、单一本地 gate 汇总、面向中文用户的发布 README 与可回滚同步边界。
 
 ## Advantages and evidence

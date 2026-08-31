@@ -1,9 +1,9 @@
 # Prior-Art Research
 
-- Researched at: 2026-08-18
-- Requested sources: [joeseesun/qiaomu-meta-skill](https://github.com/joeseesun/qiaomu-meta-skill), [yaojingang/yao-meta-skill](https://github.com/yaojingang/yao-meta-skill)
-- Inspected commits: Qiaomu `9d9eafe` / `v2.8.1`; Yao `f5d8f68`
-- Intent queries: `create reusable agent skill package`; `skill engineering trigger evaluation`; `agent skill governance portability`; `publish agent skill GitHub release`
+- Researched at: 2026-08-31
+- Requested sources: [joeseesun/qiaomu-meta-skill](https://github.com/joeseesun/qiaomu-meta-skill), [yaojingang/yao-meta-skill](https://github.com/yaojingang/yao-meta-skill), [gnipbao/content-to-skill](https://github.com/gnipbao/content-to-skill)
+- Inspected commits: Qiaomu `9d9eafe` / `v2.8.1`; Yao `f5d8f68`; Content To Skill `ce5776a5161065836ed4647f9b96629d062ffdee`
+- Intent queries: `create reusable agent skill package`; `skill engineering trigger evaluation`; `source evidence mechanism cards`; `unavailable source retest prompt`; `agent skill governance portability`; `publish agent skill GitHub release`
 - Catalogs: skills.sh, SkillsMP, GitHub source
 - Rating evidence: unavailable; installs and repository stars are not ratings or correctness evidence
 
@@ -13,7 +13,7 @@
 |---|---|---|---|
 | skills.sh | Four manual `npx.cmd skills find` queries completed on 2026-08-18; examples included `daymade/claude-code-skills@skill-reviewer` (1K installs), `jezweb/claude-skills@github-release` (1.2K installs), and `archieindian/openclaw-superpowers@skill-portability-checker` (24 installs) | Ecosystem adoption/discovery signal | These candidates were not adopted without source review; installs do not prove quality |
 | SkillsMP | The bundled runner returned 33 deduplicated candidate families across the four queries | Broad discovery signal; repository stars kept separate in the generated JSON | Results were noisy and require source review; no public rating evidence was available |
-| GitHub | The two requested repositories were cloned and their root Skill, interface, manifest, README, license and relevant references were inspected | Canonical source, structure, permissions and license evidence | Repository attention is not Skill output quality |
+| GitHub | The three requested repositories were cloned and their root Skill, interface, manifest, README, license and relevant references were inspected | Canonical source, structure, permissions and license evidence | Repository attention is not Skill output quality |
 
 The machine-generated, source-separated discovery snapshot is `../prior-art-candidates.json` in the local work area used during creation; it is intentionally not copied into this public package because it contains noisy catalog candidates that were not reviewed or adopted.
 
@@ -33,6 +33,13 @@ The machine-generated, source-separated discovery snapshot is `../prior-art-cand
 - Mechanisms learned: intent-first package design, platform-neutral Skill IR, scaffold/production/library/governed modes, trigger families and holdout thinking, context discipline, output contracts, owner/review cadence, trust/permission/rollback boundaries and explicit `missing evidence` labels.
 - Destination in this package: `manifest.json`, `agents/interface.yaml`, `schemas/skill-ir.schema.json`, `scripts/export_skill_ir.py`, `scripts/context_sizer.py`, `references/intent-dialogue.md`, `references/portability-and-trust.md`, `references/operating-modes.md` and the four-bucket `evals/trigger_cases.json`.
 
+### Content To Skill
+
+- Source: [gnipbao/content-to-skill](https://github.com/gnipbao/content-to-skill), inspected at commit `ce5776a5161065836ed4647f9b96629d062ffdee`; MIT.
+- Role: source-evidence and mechanism-extraction anchor.
+- Mechanisms learned: source inventory, observed/inferred/unavailable labels, mechanism cards, one-Skill default, blocked-source handling and forward retest prompts.
+- Destination in this package: `SKILL.md`, `USAGE.zh-CN.md`, `references/content-to-skill-adoption.md`, `agents/interface.yaml`, `manifest.json` and expanded `evals/trigger_cases.json`.
+
 ## Synthesis ledger
 
 ### keep
@@ -40,12 +47,14 @@ The machine-generated, source-separated discovery snapshot is `../prior-art-cand
 - Keep the Qiaomu rule that research and release are part of the Skill lifecycle, not optional README prose.
 - Keep the Yao separation between a lean runtime entry, on-demand references, deterministic scripts, eval fixtures and evidence reports.
 - Keep separate metrics and evidence classes; never turn installs, stars, static fixtures or plans into a single quality score.
+- Keep Content To Skill's evidence boundary, mechanism-card extraction, one-Skill default, unavailable-source stop and forward retest prompts.
 
 ### adapt
 
 - Adapt Qiaomu’s publisher from Qiaomu-owned naming and profile injection to the requested `lhylvsea` owner; no personal QR or promotional assets are included.
 - Adapt Yao’s extensive Skill OS into a first-release compact contract: IR, context budget, trust, rollback, lifecycle and trigger families are retained; telemetry, review studio and world-class evidence systems are not pulled in without a real need.
 - Adapt shell assumptions for Windows by resolving `npx.cmd`, `gh`, `git` and `python` before subprocess calls.
+- Adapt the upstream source modes to the existing `Scaffold` / `Production` / `Library` / `Governed` levels instead of creating a second authoring router.
 
 ### reject
 
@@ -53,6 +62,7 @@ The machine-generated, source-separated discovery snapshot is `../prior-art-cand
 - Reject copying either upstream repository wholesale; it would increase context, maintenance and license/attribution surface without proving user value.
 - Reject Qiaomu profile assets and branding because the requested owner is `lhylvsea`.
 - Reject claims of superiority, provider quality, human preference or production outcome without named evidence.
+- Reject copying the `content-to-skill` package wholesale or adding a competing discoverable root entrypoint; its adopted source is recorded in `references/content-to-skill-adoption.md`.
 
 ### invent
 

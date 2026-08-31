@@ -1,7 +1,6 @@
 ---
 name: lvsea-zao-skill
-description: |
-  Create, improve, migrate, evaluate, package, govern, and publish reusable agent skills from repeated workflows, prompts, transcripts, SOPs, scripts, notes, or existing skill packages. Use when the user asks to 把流程做成 Skill、封装可复用能力、优化已有 Skill、补触发评测、建立 Skill IR、检查信任边界、准备团队复用、发布到 GitHub or verify a clean installation. Exclude one-off answers, summaries, translations, ordinary documentation, brainstorming, and copy-only README edits that do not create or maintain a reusable skill package.
+description: "Create, improve, migrate, evaluate, package, govern, and publish reusable agent skills from repeated workflows, prompts, transcripts, SOPs, scripts, notes, documents, media transcripts, repositories, or existing skill packages. Use when the user asks to 把流程做成 Skill、把内容变成 Skill、文档转 Skill、视频或课程转 Skill、封装可复用能力、优化已有 Skill、按证据边界提取机制卡、补触发评测、生成重测提示、建立 Skill IR、检查信任边界、准备团队复用、发布到 GitHub or verify a clean installation. Exclude one-off answers, summaries, translations, ordinary documentation, brainstorming, and copy-only README edits that do not create or maintain a reusable skill package."
 metadata:
   author: "海洋哥 / lhylvsea"
   version: "0.1.1"
@@ -18,16 +17,32 @@ metadata:
 - 本 Skill 是 Skill 创建与发布的单一作者权威；不要再调用另一个 generic creator、discovery 或 publisher 来重复初始化。
 - 一个包只保留一个可发现的根 `SKILL.md`；示例和测试夹具使用 `SKILL.example.md`、`SKILL.fixture.md`。
 - 先锁定目标目录、Skill 名称、版本、owner 和发布范围，再写文件；涉及发布、安装、网络或账号时明确权限边界。
+- 来源型请求先建立来源边界：记录来源类型、实际读到的材料、未读或不可访问的材料、用户目标、目标运行时和主要不确定性。
+- 只有在来源证据支持时才提炼执行规则；视频或音频只有标题/链接而没有转写、字幕或可提取权限时，停在 `BLOCKED_SOURCE`，请求材料或明确标记 `dry-run`。
 
 ## 核心流程
 
-1. `Intent`：确认重复任务、目标用户、输入、输出契约、排除项、质量标准和完成证据；小而安全的细节自行假设，影响包体或权限的冲突才提问。
+1. `Intent`：确认重复任务、目标用户、输入、输出契约、排除项、质量标准和完成证据；同时建立来源边界；小而安全的细节自行假设，影响包体或权限的冲突才提问。
 2. `Research`：用意图关键词检索 skills.sh、SkillsMP 和 GitHub；核对源文件、许可证、维护状态、权限与安全信号，不执行未经审查的第三方代码。
-3. `Synthesis`：建立 `keep / adapt / reject / invent` 台账，学习机制而不是拼贴上游正文；通过通用化门槛后才把样本失败升级为核心规则。
+3. `Synthesis`：建立 `keep / adapt / reject / invent` 台账，先把来源整理为机制卡，再学习机制而不是拼贴上游正文；通过通用化门槛后才把样本失败升级为核心规则。
 4. `Package`：保持入口精简，把长判断放在 `references/`，把确定性校验放在 `scripts/`，把触发样例放在 `evals/`，把证据放在 `reports/`。
 5. `Eval`：先测触发面，再测近邻误触发、对抗案例、上下文预算、包结构、秘密信息、信任与权限边界；没有 provider 或人工证据时标记 `missing evidence`。
 6. `Release`：公开发布必须经过本地门禁、功能分支、PR、版本化 Release、公开发现和隔离安装验证；禁止直接推送默认分支或复用已发布版本。
 7. `Operate`：记录 owner、review cadence、review due、rollback boundary 和下一轮改进方向，不把临时报告、私有素材或凭据写进公开包。
+
+## 来源转 Skill 路由
+
+来源复杂度决定入口模式，模式最终映射到本 Skill 的治理级别：
+
+| 来源信号 | 入口模式 | 必须留下的证据 |
+|---|---|---|
+| 短文本或清晰方法 | `QUICK_CONVERT` | 机制卡、初版 `SKILL.md`、至少一个重测提示 |
+| 文档、文件夹、转写稿、视频或多来源材料 | `SOURCE_AUDIT` | 来源清单、证据边界、机制卡和不确定性 |
+| 用户要求生成文件、脚手架或可安装包 | `PACKAGE_BUILD` | 目标路径、包结构、输出契约和结构校验 |
+| 已生成 Skill 失败或只会总结 | `REPAIR_FROM_FEEDBACK` | 原始来源、失败信号、最小补丁和回归结果 |
+| 来源不可访问或证据不足 | `BLOCKED_SOURCE` | 缺失材料、停止原因、请求或 `dry-run` 结果 |
+
+`QUICK_CONVERT`、`SOURCE_AUDIT` 和 `PACKAGE_BUILD` 默认产出一个边界清楚的 Skill；只有确有独立路由、状态或领域边界时才升级为 Skill 家族。细化的来源清单、机制卡字段、取舍过滤和重测写法见 [content-to-skill 融合说明](references/content-to-skill-adoption.md)。
 
 ## 模式与门禁
 
@@ -46,6 +61,7 @@ metadata:
 
 - 方法、意图和取舍：`references/skill-engineering-method.md`、`references/intent-dialogue.md`、`references/creation-handoff.md`。
 - 评测、治理、权限和可移植：`references/evaluation-and-governance.md`、`references/portability-and-trust.md`。
+- 来源边界、机制卡、入口模式和前向重测：`references/content-to-skill-adoption.md`。
 - 本地最小验证：
 
   ```bash
@@ -62,5 +78,7 @@ metadata:
 
 - 只把明确授权的 Skill 文件写入目标包；不读取或发布 Token、Cookie、私有附件、原始私人对话和本机绝对路径。
 - 远程候选默认只读元数据和源码；不为了学习而运行安装器、hook、脚本或生成命令。
+- 不根据不可访问来源的标题、摘要或链接臆造详细方法；将其标为 `unavailable`，必要时停在 `BLOCKED_SOURCE`。
+- 新 Skill 默认单一入口；扩展为 Skill 家族、覆盖已有 Skill 或宣称 `full_test` 前，执行对应的 `CHECKPOINT / STOP` 和证据检查。
 - `npx skills add`、GitHub PR/Release、本地安装同步和任何外部写入都需要用户明确授权。
 - 真实输出质量、用户满意度、provider 实跑、人工盲评和生态采用不能由静态文件名或本地 fixture 代替；证据不足时写 `missing evidence`。

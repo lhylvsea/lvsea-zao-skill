@@ -1,16 +1,16 @@
 {
   "schema_version": "3.0.0-lvsea",
-  "generated_at": "2026-08-18",
+  "generated_at": "2026-08-31",
   "package": {
     "name": "lvsea-zao-skill",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "owner": "海洋哥 / lhylvsea",
     "maturity_tier": "governed",
     "lifecycle_stage": "library",
-    "upstream_inspiration": "https://github.com/joeseesun/qiaomu-meta-skill; https://github.com/yaojingang/yao-meta-skill"
+    "upstream_inspiration": "https://github.com/joeseesun/qiaomu-meta-skill; https://github.com/yaojingang/yao-meta-skill; https://github.com/gnipbao/content-to-skill"
   },
   "intent": {
-    "description": "Create, improve, migrate, evaluate, package, govern, and publish reusable agent skills from repeated workflows, prompts, transcripts, SOPs, scripts, notes, or existing skill packages. Use when the user asks to 把流程做成 Skill、封装可复用能力、优化已有 Skill、补触发评测、建立 Skill IR、检查信任边界、准备团队复用、发布到 GitHub or verify a clean installation. Exclude one-off answers, summaries, translations, ordinary documentation, brainstorming, and copy-only README edits that do not create or maintain a reusable skill package.\n",
+    "description": "Create, improve, migrate, evaluate, package, govern, and publish reusable agent skills from repeated workflows, prompts, transcripts, SOPs, scripts, notes, documents, media transcripts, repositories, or existing skill packages. Use when the user asks to 把流程做成 Skill、把内容变成 Skill、文档转 Skill、视频或课程转 Skill、封装可复用能力、优化已有 Skill、按证据边界提取机制卡、补触发评测、生成重测提示、建立 Skill IR、检查信任边界、准备团队复用、发布到 GitHub or verify a clean installation. Exclude one-off answers, summaries, translations, ordinary documentation, brainstorming, and copy-only README edits that do not create or maintain a reusable skill package.",
     "job_to_be_done": "将重复工作流、Prompt、SOP、脚本、笔记或旧 Skill 变成可发现、可评测、可移植、可治理、可发布的 Agent Skill 包。",
     "target_users": [
       "个人自动化使用者",
@@ -24,6 +24,12 @@
       "SOP",
       "script",
       "notes",
+      "documents",
+      "PDF",
+      "video",
+      "article",
+      "repository",
+      "chat logs",
       "existing skill package"
     ],
     "outputs": [
@@ -31,6 +37,9 @@
       "README.md",
       "interface",
       "manifest",
+      "source boundary",
+      "mechanism cards",
+      "retest prompts",
       "trigger eval",
       "Skill IR",
       "release evidence"
@@ -50,13 +59,18 @@
       "优化这个已有 agent skill 的触发边界，补 should-trigger 和 should-not-trigger 评测。",
       "把这组 Prompt、脚本和聊天记录迁移成可安装的 Skill 包。",
       "研究相关方案后，创建一个带 Skill IR、权限边界和发布门禁的可复用能力包。",
-      "发布这个 Skill 到 GitHub，创建 PR、Release 并验证干净安装。"
+      "发布这个 Skill 到 GitHub，创建 PR、Release 并验证干净安装。",
+      "把这份设备点检 SOP 按证据边界和机制卡转成可执行 Skill。",
+      "只有课程视频链接，没有转写稿，先判断来源是否可访问，再决定能否做成 Skill。",
+      "审查这个生成的 Skill 是否把原文总结当成流程，补充重测提示。",
+      "把多个来源拆成一套机制卡和一个可复用 Skill 包，记录合并或舍弃决策。"
     ],
     "should_not_trigger": [
       "只解释一下什么是 Agent Skill，不要创建文件。",
       "把这段文字翻译成中文，不需要 Skill。",
       "总结这份会议纪要，暂时不要封装成能力包。",
       "只做一份今天使用的 checklist，不要创建可复用 Skill。",
+      "只总结这段视频，不要提取机制卡或创建 Skill。",
       "帮我写一个产品标题，不涉及工作流和 Skill。"
     ],
     "near_neighbor": [
@@ -74,12 +88,14 @@
       "先根据本文件的 `description` 判断是否真的要创建或维护可复用 Skill；一次性回答、解释、翻译、普通文档和只改 README 不触发。",
       "本 Skill 是 Skill 创建与发布的单一作者权威；不要再调用另一个 generic creator、discovery 或 publisher 来重复初始化。",
       "一个包只保留一个可发现的根 `SKILL.md`；示例和测试夹具使用 `SKILL.example.md`、`SKILL.fixture.md`。",
-      "先锁定目标目录、Skill 名称、版本、owner 和发布范围，再写文件；涉及发布、安装、网络或账号时明确权限边界。"
+      "先锁定目标目录、Skill 名称、版本、owner 和发布范围，再写文件；涉及发布、安装、网络或账号时明确权限边界。",
+      "来源型请求先建立来源边界：记录来源类型、实际读到的材料、未读或不可访问的材料、用户目标、目标运行时和主要不确定性。",
+      "只有在来源证据支持时才提炼执行规则；视频或音频只有标题/链接而没有转写、字幕或可提取权限时，停在 `BLOCKED_SOURCE`，请求材料或明确标记 `dry-run`。"
     ],
     "core_workflow": [
-      "`Intent`：确认重复任务、目标用户、输入、输出契约、排除项、质量标准和完成证据；小而安全的细节自行假设，影响包体或权限的冲突才提问。",
+      "`Intent`：确认重复任务、目标用户、输入、输出契约、排除项、质量标准和完成证据；同时建立来源边界；小而安全的细节自行假设，影响包体或权限的冲突才提问。",
       "`Research`：用意图关键词检索 skills.sh、SkillsMP 和 GitHub；核对源文件、许可证、维护状态、权限与安全信号，不执行未经审查的第三方代码。",
-      "`Synthesis`：建立 `keep / adapt / reject / invent` 台账，学习机制而不是拼贴上游正文；通过通用化门槛后才把样本失败升级为核心规则。",
+      "`Synthesis`：建立 `keep / adapt / reject / invent` 台账，先把来源整理为机制卡，再学习机制而不是拼贴上游正文；通过通用化门槛后才把样本失败升级为核心规则。",
       "`Package`：保持入口精简，把长判断放在 `references/`，把确定性校验放在 `scripts/`，把触发样例放在 `evals/`，把证据放在 `reports/`。",
       "`Eval`：先测触发面，再测近邻误触发、对抗案例、上下文预算、包结构、秘密信息、信任与权限边界；没有 provider 或人工证据时标记 `missing evidence`。",
       "`Release`：公开发布必须经过本地门禁、功能分支、PR、版本化 Release、公开发现和隔离安装验证；禁止直接推送默认分支或复用已发布版本。",
@@ -95,12 +111,15 @@
     "failure_modes": [
       "只把明确授权的 Skill 文件写入目标包；不读取或发布 Token、Cookie、私有附件、原始私人对话和本机绝对路径。",
       "远程候选默认只读元数据和源码；不为了学习而运行安装器、hook、脚本或生成命令。",
+      "不根据不可访问来源的标题、摘要或链接臆造详细方法；将其标为 `unavailable`，必要时停在 `BLOCKED_SOURCE`。",
+      "新 Skill 默认单一入口；扩展为 Skill 家族、覆盖已有 Skill 或宣称 `full_test` 前，执行对应的 `CHECKPOINT / STOP` 和证据检查。",
       "`npx skills add`、GitHub PR/Release、本地安装同步和任何外部写入都需要用户明确授权。",
       "真实输出质量、用户满意度、provider 实跑、人工盲评和生态采用不能由静态文件名或本地 fixture 代替；证据不足时写 `missing evidence`。"
     ]
   },
   "resources": {
     "references": [
+      "references/content-to-skill-adoption.md",
       "references/creation-handoff.md",
       "references/evaluation-and-governance.md",
       "references/intent-dialogue.md",
@@ -153,7 +172,7 @@
     "maturity": "governed",
     "lifecycle_stage": "library",
     "review_cadence": "quarterly",
-    "review_due": "2026-11-18",
+    "review_due": "2026-11-30",
     "rollback_boundary": "feature branch and immutable semver release; local sync is recoverable"
   },
   "portability": {

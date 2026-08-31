@@ -3,28 +3,30 @@
   "threshold": 0.5,
   "description_concepts": [
     "authoring_action",
+    "mechanism_card",
     "quality_mechanism",
     "release_intent",
     "reusable_intent",
     "skill",
+    "source_boundary",
     "source_material"
   ],
   "missing_description_concepts": [],
   "summary": {
-    "total": 15,
-    "passed": 15,
+    "total": 20,
+    "passed": 20,
     "false_positive": 0,
     "false_negative": 0,
     "pass_rate": 1.0
   },
   "bucket_summary": {
     "should_trigger": {
-      "total": 5,
-      "passed": 5
+      "total": 9,
+      "passed": 9
     },
     "should_not_trigger": {
-      "total": 5,
-      "passed": 5
+      "total": 6,
+      "passed": 6
     },
     "near_neighbor": {
       "total": 3,
@@ -44,7 +46,7 @@
         "expected_trigger": true,
         "predicted_trigger": true,
         "passed": true,
-        "score": 1.0,
+        "score": 0.8,
         "matched_concepts": [
           "authoring_action",
           "reusable_intent",
@@ -59,7 +61,7 @@
         "expected_trigger": true,
         "predicted_trigger": true,
         "passed": true,
-        "score": 1.0,
+        "score": 0.6,
         "matched_concepts": [
           "authoring_action",
           "quality_mechanism",
@@ -73,7 +75,7 @@
         "expected_trigger": true,
         "predicted_trigger": true,
         "passed": true,
-        "score": 1.0,
+        "score": 0.6,
         "matched_concepts": [
           "authoring_action",
           "skill",
@@ -87,7 +89,7 @@
         "expected_trigger": true,
         "predicted_trigger": true,
         "passed": true,
-        "score": 1.0,
+        "score": 0.8,
         "matched_concepts": [
           "authoring_action",
           "quality_mechanism",
@@ -102,11 +104,73 @@
         "expected_trigger": true,
         "predicted_trigger": true,
         "passed": true,
-        "score": 1.0,
+        "score": 0.6,
         "matched_concepts": [
           "authoring_action",
           "release_intent",
           "skill"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "把这份设备点检 SOP 按证据边界和机制卡转成可执行 Skill。",
+        "family": "source-boundary-convert",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "mechanism_card",
+          "quality_mechanism",
+          "skill",
+          "source_boundary",
+          "source_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "只有课程视频链接，没有转写稿，先判断来源是否可访问，再决定能否做成 Skill。",
+        "family": "blocked-source",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.6,
+        "matched_concepts": [
+          "authoring_action",
+          "skill",
+          "source_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "审查这个生成的 Skill 是否把原文总结当成流程，补充重测提示。",
+        "family": "repair-summary-as-skill",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.8,
+        "matched_concepts": [
+          "authoring_action",
+          "quality_mechanism",
+          "skill",
+          "source_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "把多个来源拆成一套机制卡和一个可复用 Skill 包，记录合并或舍弃决策。",
+        "family": "multi-source-mechanism",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "authoring_action",
+          "mechanism_card",
+          "quality_mechanism",
+          "reusable_intent",
+          "skill",
+          "source_material"
         ],
         "negative_pattern": null
       }
@@ -118,7 +182,7 @@
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 0.667,
+        "score": 0.4,
         "matched_concepts": [
           "authoring_action",
           "skill"
@@ -131,7 +195,7 @@
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 0.333,
+        "score": 0.2,
         "matched_concepts": [
           "skill"
         ],
@@ -143,7 +207,7 @@
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 0.667,
+        "score": 0.4,
         "matched_concepts": [
           "authoring_action",
           "skill"
@@ -156,7 +220,7 @@
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 1.0,
+        "score": 0.6,
         "matched_concepts": [
           "authoring_action",
           "reusable_intent",
@@ -165,12 +229,28 @@
         "negative_pattern": "不要创建"
       },
       {
+        "prompt": "只总结这段视频，不要提取机制卡或创建 Skill。",
+        "family": "summary-with-mechanism-keyword",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "authoring_action",
+          "mechanism_card",
+          "quality_mechanism",
+          "skill",
+          "source_material"
+        ],
+        "negative_pattern": "只总结"
+      },
+      {
         "prompt": "帮我写一个产品标题，不涉及工作流和 Skill。",
         "family": "ordinary-copy",
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 0.667,
+        "score": 0.4,
         "matched_concepts": [
           "skill",
           "source_material"
@@ -185,7 +265,7 @@
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 1.0,
+        "score": 0.6,
         "matched_concepts": [
           "authoring_action",
           "skill",
@@ -199,7 +279,7 @@
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 0.667,
+        "score": 0.4,
         "matched_concepts": [
           "quality_mechanism",
           "skill"
@@ -212,7 +292,7 @@
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 1.0,
+        "score": 0.6,
         "matched_concepts": [
           "authoring_action",
           "skill",
@@ -228,7 +308,7 @@
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 0.667,
+        "score": 0.4,
         "matched_concepts": [
           "authoring_action",
           "skill"
@@ -241,7 +321,7 @@
         "expected_trigger": false,
         "predicted_trigger": false,
         "passed": true,
-        "score": 1.0,
+        "score": 0.6,
         "matched_concepts": [
           "authoring_action",
           "reusable_intent",
